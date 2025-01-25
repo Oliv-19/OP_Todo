@@ -1,74 +1,328 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: content-box;
-    /* outline: 1px solid red; */
+    box-sizing: border-box;
+    --windowColor :#B8AAF9;
+
+}
+/* index css */
+body{
+    background-color: #F6F5F1;
+    height: 100vh;
+    background-image: linear-gradient(#b8aaf988 1px, transparent 1px), linear-gradient(to right, #b8aaf988 1px, #fcf9f1 1px);
+    background-size: 20px 20px;
+    
 }
 
-body{
-    display: grid;
-    grid-template-columns: 20% 1fr;
-    grid-template-rows: 7% 1fr;
-    height: 100vh;
-}
 
 nav{
+    position: fixed;
+    inset: 0px;
+    border-bottom: 2px solid black;
+    height: 10%;
+    display: grid;
+    grid-template-columns: 95% 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+    background-color: var(--windowColor);
+    box-shadow:0px 2px 12px #2B0B56;
+}
+.header{
     grid-area: 1/1/2/3;
-    background-color: antiquewhite;
+}
+.addProject{
+    width: 20px;
+    grid-area: 1/2/2/3;
+}.addProject:hover, .addTodo:hover{
+    background-color: #9179ff;
+    color: white;
+    font-weight: bold;
+}.addProject:focus, .addTodo:focus{
+    background-color: #a291f3;
+    color: white;
+    font-weight: bold;
+}
+dialog{
+    margin: auto;
+    border: 2px solid black;
+    width: 30%;
+    height: 30%;
+    background-color: #fcf9f1;
+    box-shadow:8px 8px #2B0B56;
+}
+dialog:-internal-dialog-in-top-layer::backdrop {
+    position: fixed;
+    inset: 0px;
+    background: rgba(0, 0, 0, 0.336);
+}
+.form{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-.sideBar{
-    background-color: beige;
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   grid-template-rows: 7% 1fr;
-}
-/* .projects{
-    grid-column: 1/3;
-} */
+input, select{
+    border: none;
+    width: 80%;
+    border-radius: 5px ;
+    background-color: #d2ccef;
+    padding: 5px;
+    box-shadow:1px 1px 4px #2B0B56;
+}input:hover, input:focus,
+select:hover, select:focus{
 
+    outline: 2px solid #b8aaf9;
+}
+.sendBtn,
+.sendTodoBtn{
+    width: 70px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #b8aaf9;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    box-shadow:1px 1px 4px #2B0B56;
+}.sendBtn:focus, .sendBtn:hover,
+.sendTodoBtn:focus, .sendTodoBtn:hover{
+    background-color: #9d8ce7;
+}
+.projects{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10%;
+    
+
+}
 .project{
-    border: 1px solid red;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    box-shadow:6px 6px 2px #2b0b56b0;
+    margin: 5px;
+    background-color: #fcf9f1;
+    
+}
+.project:hover{
+    transform: scale(1.1);
+    box-shadow:10px 8px 2px #2b0b56b0;
+
 }
 
-.formDiv{
-    display: none;
+.v1{
+    width: 30%;
+    height: 30%;
 }
-.showForm{
-    display: block;
+.v2{
+    width: 20%;
+    height: 50%;
 }
+.v3{
+    height: 50%;
+    width: 27%;
+}
+.v4{
+    height: 35%;
+    width: 20%;
+}
+.windowHead, .todoWindowHead{
+    background-color: var(--windowColor);
+    width: 100%;
+    height: 35px;
+    display: grid;
+    grid-template-columns: 85% 1fr;
+    grid-template-rows: 100%;
+    border-bottom: 2px solid black;
+    align-items: center;
 
+}
+.windowBtn, .addProject, .addTodo, #todoDel{
+    justify-self: center;
+    height: 22px;
+    width: 25px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    text-align: center;
+    font-size: 1em;
 
-
-.content{
+}.windowBtn:hover,
+#todoDel:hover{
+    background-color: #ff3e64;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: bold;
+}.windowBtn:focus,
+#todoDel:focus{
+    background-color: #ff6786;
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+.pcontent{
+    width: 100%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.projectHead{
+.footer{
+    height: 5%;
     width: 100%;
+}
+
+
+/* todos css */
+#pTitle, #pName{
+    margin-left: 5px;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.todoContainer, #todoBox{
+    width: 90%;
+    border-radius: 5px ;
+    background-color: #F6EDE4;
+    padding: 5px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 50% 20% repeat(2, 1fr);
+    align-items: center;
+    justify-items: center;
+    font-size: 0.9em;
+}
+.todosHead{
+    display: grid;
+    grid-template-columns: 50% 20% repeat(2, 1fr);
+    width: 90%;
+    border-radius: 5px ;
+    padding: 5px;
+    margin: auto;
+    margin-top: 10px;
+    background-color: #d4d4d4;
     align-items: center;
     justify-items: center;
 }
-.projectName{
-    grid-area: 1/1/2/3;
-    align-self: center;
+#todoTitle, .todosHead > p:first-of-type, .checkbox-wrapper-11{
+    justify-self: baseline;
+    
 }
-.addTodo{
-    grid-area: 1/2/2/3;
+.todoWindowHead{
+    display: grid;
+    grid-template-columns: 80% 1fr 1fr;
+    
+   
 }
-.todo{
-    width: 90%;
-    margin-bottom: 15px;
+#todosModal{
+    width: 50%;
+    min-height: 60%;
+     /* overflow-y: hidden; */
+}
+.todoContent{
+    margin-top: 10px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
+    margin-bottom: 10px;
+    /* overflow: visible; */
 }
-.todoInfo{
-    display: flex;
-    justify-content: space-evenly;
+#todoCheck{
+    width: 15px;
+    height: 15px;
+}
+
+#newTodoModal{
+    height: 45%;
+    width: 25%;
+}
+
+.todoForm{
+    padding-top: 15px;
+    height: 85%;
     width: 100%;
-    border-bottom: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.titleContainer,
+.dueDateContainer,
+.priorityContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.todoTitleInput,
+.todoDueDate,
+.todoPriority{
+    width: 100%;
+}
+.sendTodoBtn{
+    margin-top: 20px;
+}
+
+.checkbox_wrapper{
+    --disabled: #C3C8DE;
+    display: flex;
+    align-items: center;
+    justify-self: baseline;
+    width: 30%;
+    justify-content: space-around;
+}
+.checkbox{
+    cursor: pointer;
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    border: 1px solid gray;
+    padding: 0;
+    outline: none;
+    text-align: center;
+    border-radius: 5px; 
+    box-shadow: none;
+}
+.checkbox:checked::before, .checkbox:disabled::before{
+    content: '✔';
+    color: white;
+}
+.checkbox:checked, .checkbox:disabled{
+    background-color: rgba(29, 29, 29, 0.123);
+    border: 1px solid rgb(255, 255, 255);
+    cursor: default;
+}
+.checkbox:hover{
+    background-color: #ede8f365;
+    border: 1px solid rgb(255, 255, 255);
+    outline: none;
+} 
+.checkbox:focus{
+    outline: none;
+} 
+.checkbox:disabled:hover {
+    background-color: rgba(29, 29, 29, 0.123);
+    border: 1px solid rgb(255, 255, 255);
+    outline: none;
+} 
+
+.checkboxLabel{
+    cursor: pointer;
+}
+
+.checkbox:checked + .checkboxLabel, .checkbox:disabled + .checkboxLabel {
+    color: gray;
+    text-decoration: line-through;
+    cursor: default;
 }

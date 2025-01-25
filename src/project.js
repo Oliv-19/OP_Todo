@@ -1,35 +1,22 @@
-import {events} from './pubsub'
 
 export default  class Project {
-    static todoList= []
-    static ProjectList= []
     constructor(name){
-        this.name = name
-        //this.category =category 
-        // if(Project.ProjectList.includes(name)== false){
-        //     this.name =name 
-        //     Project.ProjectList.push(this)
-        //     console.log(Project.ProjectList)
-        // }
-        
+        this.name = name//<--- has to be unique
+        this.todoList = []
     }
-    static init(){
-        events.subscribe('createProject', Project.NewProject);
+    // set todos(todoList){
+    //     this.todoList = todoList
+    // }
+    addTodo(todoInstance){
+        this.todoList.push(todoInstance)
+        console.log(this.todoList)
     }
-    
-//     static addTodo(todo){
-//         let idk = new Todo(todo)
-//         Proyect.todoList.push(idk)
-//         console.log(Proyect.todoList)
-//     }
-    static NewProject(pName){
-        let newProyect = new Project(pName)
-        if(Project.ProjectList.includes(pName)== false){
-            Project.ProjectList.push(newProyect)
-            //console.log(Project.ProjectList)
+    deleteTodo(currTodo){
+        console.log(currTodo)
+        let arrayElem= this.todoList.findIndex(item=> item == currTodo)
+        if(arrayElem != -1){
+            this.todoList.splice(arrayElem, 1)
         }
-        events.publish('projectCreated', newProyect);
-        //page.addNewProyectDom()
+        console.log(this.todoList)
     }
-    
 }

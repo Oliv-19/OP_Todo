@@ -6,38 +6,130 @@
     <title>OP To Do</title>
 </head>
 <body>
-    <nav>
-    </nav>
-    <div class="sideBar">
-            <h1 class="title">Projects</h1>
-            <button type="button" name="addProject" class="addProject">+</button>
-            <div class="projectsDiv">
-                <div name="formDiv" class="formDiv">
-                    <form action="" class="form" name="newPjForm">
-                        <input name="pNameInput" type="text" class="pNameInput">
-                        <button type="submit" class="sendBtn">save</button>
-                    </form>
+    <!-- <dialog class="project dialog">
+        <form action="" class="form" name="newPjForm" method="dialog">
+                <div class="windowHead">
+                    <p id="pTitle">Add New Project</p>
+                    <button type="button" id="closeNewP" class="windowBtn">x</button>
                 </div>
-                <!-- <div class="project" id="pContainer">
-                    <p id="pTitle">name</p>
-                    <button>edit</button>
-                    <button>del</button>
+                <div class="todoContainer">
+                    <label for="pNameInput">Project Name:</label>
+                    <input name="pNameInput" type="text" id="pNameInput" class="pNameInput">
+                    
+                   
+                </div>
+                <button type="submit" class="sendBtn">save</button>
+        </form>
+    </dialog> -->
+    
+    <dialog id="newPModal">
+        <div class="windowHead">
+            <p id="pTitle">Add New Project</p>
+            <button data-dialog-id="newPModal" type="button" id="closeNewP" class="windowBtn">x</button>
+        </div>
+        <form method="dialog" action="" class="form" name="newPjForm">
+            <label for="pNameInput">Project Name:</label>
+            <input name="pNameInput" type="text" class="pNameInput">
+            <button type="submit" class="sendBtn">save</button>
+        </form>
+    </dialog>
+    <nav>
+        <h1 class="header">Todo</h1>
+        <button type="button" name="addProject" class="addProject">+</button>
+    </nav>
+    <div class="projects">
+
+
+        <template id="template">
+            <div class="project" id="pContainer">
+                <div class="windowHead">
+                    <p name="pTitle" id="pTitle">Daily</p>
+                    <button id="delProjectBtn" class="windowBtn">x</button>
+                </div>
+                <div class="pcontent">
+                    <div id="pContainer" class="todoContainer">
+                        <p>click to open Project</p>
+                        <!-- <h5>27/11/24</h5>
+                        <button type="button">-</button> -->
+                    </div>
+                </div>
+                
+            </div>
+        </Template>
+
+        <template id="todosTemplate">
+            <div id="todoBox">
+                <div class="checkbox_wrapper">
+                    <input class="checkbox" id="checkbox" type="checkbox" name="checkbox" value="2">
+                    <label class="checkboxLabel" for="checkbox">To-do</label>
+                </div>
+                <!-- <div class="checkbox-wrapper-11">
+                    <input id="02-11" type="checkbox" name="r" value="2">
+                    <label for="02-11">To-do</label>
                 </div> -->
+                <p id="todoDate"></p>
+                <p id="todoPriority"></p>
+                <button type="button" id="todoDel">X</button>
+                <!-- <h5>27/11/24</h5>
+                <button type="button">-</button> -->
             </div>
-        </div>
-    <div class="content">
-        <div class="projectHead">
-            <h1 class="projectName">"projectName" To do's</h1>
-            <button type="button" class="addTodo">+</button>
-        </div>
-        <div class="todo">
-            <input type="checkbox" name="" id="">
-            <div class="todoInfo">
-                <p>study</p>
-                <h5>27/11/24</h5>
-                <button type="button">-</button>
+        </template>
+        <dialog id="todosModal">
+            <div class="todoWindowHead">
+                <p id="pName">Project Name</p>
+                <button type="button" name="addTodo" class="addTodo">+</button>
+                <button data-dialog-id="todosModal" type="button" id="closeNewP" class="windowBtn">x</button>
             </div>
+            <div class="todosHead">
+                    <p>Title</p>
+                    <p>Due date</p>
+                    <p>Priority</p>
+                    <p>Delete</p>
+                </div>
+            <div class="todoContent">
+                
+            </div>
+        </dialog>
+
+        <dialog id="newTodoModal">
+            <div class="windowHead">
+                <p id="pTitle">Add New Todo</p>
+                <button data-dialog-id="newTodoModal" type="button" id="closeNewP" class="windowBtn">x</button>
+            </div>
+            <form method="dialog" action="" class="todoForm" name="newTodoForm">
+                <div class="titleContainer">
+                    <label for="todoTitleInput">Title:</label>
+                    <input name="todoTitleInput" type="text" class="todoTitleInput">
+                </div>
+
+                <!-- <div class="descriptionContainer">
+                    <label for="todoDescription">Description:</label>
+                    <textarea cols="20" rows="3" name="todoDescription" type="text" class="todoDescription"></textarea>
+                </div> -->
+                
+                <div class="dueDateContainer">
+                    <label for="todoDueDate">Due Date:</label>
+                    <input name="todoDueDate" type="date" class="todoDueDate">
+                </div>
+
+                <div class="priorityContainer">
+                    <label for="todoPriority">Priority:</label>
+                    <select name="todoPriority" class="todoPriority">
+                        <option value="">None</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+                
+                <div class="saveBtnContainer">
+                    <button type="submit" class="sendTodoBtn">save</button>
+                </div>
+            </form>
+        </dialog>
+        <div class="footer">
         </div>
     </div>
+        
 </body>
 </html>
