@@ -30,14 +30,16 @@ class Index{
         
     }
     getProjects(){
-        for(let i =0; i<localStorage.length; i++){
-            let projects = this.projectStorage.getProjects(localStorage.key(i))
+        let projectsArray = this.projectStorage.getProjectsArray()
+        let sortedArray = this.projectStorage.sortProjects(projectsArray)
 
-            let projectDOM = new ProjectDom(projects, this.projectStorage)
+        sortedArray.forEach(project=>{
+            let projectDOM = new ProjectDom(project, this.projectStorage)
             projectDOM.render()
-        }
+        })
     }
     createNewProject(projectName){
+        
         let project = new Project(projectName)
 
         let projectDOM = new ProjectDom(project, this.projectStorage)
@@ -51,14 +53,23 @@ class Index{
     projectFormHandler(e){
         e.preventDefault()
         let projectName = this.form.children.namedItem('pNameInput')
+        let warningMessageSpan = document.querySelector('.warningMessage')
+
+        if(this.projectStorage.getProject(projectName.value) == null){
+
+            warningMessageSpan.textContent=''
+            this.createNewProject(projectName.value)
+            
+            this.newPModal.close()
+            this.form.reset()
+
+        }else{
+            warningMessageSpan.textContent='This project name already exists'
+        }
         
-        this.createNewProject(projectName.value)
-        
-        this.newPModal.close()
-        this.form.reset()
     }
     findProject(projectName){
-        let project = this.projectStorage.getProjects(projectName)
+        let project = this.projectStorage.getProject(projectName)
         
         let projectInstance = new Project(project.name)
         projectInstance.todoList = project.todoList

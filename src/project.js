@@ -1,8 +1,9 @@
-
+import { format } from "date-fns";
 export default  class Project {
     constructor(name){
         this.name = name//<--- has to be unique
         this.todoList = []
+        this.createdDate = format(new Date(), 'MM/dd/yyyy pp')
     }
     // set todos(todoList){
     //     this.todoList = todoList

@@ -6,22 +6,6 @@
     <title>OP To Do</title>
 </head>
 <body>
-    <!-- <dialog class="project dialog">
-        <form action="" class="form" name="newPjForm" method="dialog">
-                <div class="windowHead">
-                    <p id="pTitle">Add New Project</p>
-                    <button type="button" id="closeNewP" class="windowBtn">x</button>
-                </div>
-                <div class="todoContainer">
-                    <label for="pNameInput">Project Name:</label>
-                    <input name="pNameInput" type="text" id="pNameInput" class="pNameInput">
-                    
-                   
-                </div>
-                <button type="submit" class="sendBtn">save</button>
-        </form>
-    </dialog> -->
-    
     <dialog id="newPModal">
         <div class="windowHead">
             <p id="pTitle">Add New Project</p>
@@ -29,7 +13,8 @@
         </div>
         <form method="dialog" action="" class="form" name="newPjForm">
             <label for="pNameInput">Project Name:</label>
-            <input name="pNameInput" type="text" class="pNameInput">
+            <span class="warningMessage"></span>
+            <input name="pNameInput" type="text" class="pNameInput" required>
             <button type="submit" class="sendBtn">save</button>
         </form>
     </dialog>
