@@ -1,9 +1,18 @@
-import { format } from "date-fns";
+
 export default  class Project {
-    constructor(name){
-        this.name = name//<--- has to be unique
+    constructor(name, createdDate){
+        this.name = name
+        
+        this.projectColor
         this.todoList = []
-        this.createdDate = format(new Date(), 'MM/dd/yyyy pp')
+        this.createdDate = createdDate
+        
+    }
+    assignProjectColor(){
+        let colorList=['#E5B1A3','#7371B3','#dfabfb','#e99cdd', '#B8AAF9', '#F59ABE', '#9CB2FF', '#b9a4c7']
+        
+        let  randomIndex = Math.floor(Math.random() * colorList.length)
+        this.projectColor = colorList[randomIndex]
     }
     // set todos(todoList){
     //     this.todoList = todoList

@@ -1,10 +1,10 @@
 
 export default class TodoDOM{
-  constructor(todoObj, projectColor, projectStorage, currProject){
+  constructor(todoObj, projectStorage, currProject){
       this.todo = todoObj
-      this.projectColor = projectColor
       this.projectStorage = projectStorage
       this.currProject = currProject
+      this.projectColor = this.currProject.projectColor
     
       this.todoContent= document.querySelector('.todoContent')
 
@@ -40,6 +40,7 @@ export default class TodoDOM{
       })
   }
   render(){
+    this.todoBox.title=this.todo.title
     this.todoBox.style.background= this.projectColor
     this.todoBox.dataset.todoTitle=this.todo.title
     this.todoCheck.id=this.todo.title

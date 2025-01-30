@@ -1,3 +1,5 @@
+
+import { format } from "date-fns";
 export default class localStorageManager{
     
     saveProject(project){
@@ -11,14 +13,12 @@ export default class localStorageManager{
             let project = this.getProject(localStorage.key(i))
             arr.push(project)    
         }
+        //console.log(arr)
         return arr
     }
     sortProjects(projects){
-        return projects.sort((a, b) => {
-            if(a.createdDate < b.createdDate) return -1;
-            if(a.createdDate > b.createdDate) return 1;
-            return 0;
-        })
+        console.log(projects)
+        return projects.sort((a, b) => new Date(a.createdDate) - new Date(b.createdDate))
     }
     getProject(pName){
         return JSON.parse(localStorage.getItem(pName))

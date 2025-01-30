@@ -2,16 +2,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    --windowColor :#B8AAF9;
+    --windowColor :#684D9A;
 
 }
-/* index css */
 body{
-    background-color: #F6F5F1;
+    background-color: #DDD1F7;
     height: 100vh;
-    background-image: linear-gradient(#b8aaf988 1px, transparent 1px), linear-gradient(to right, #b8aaf988 1px, #fcf9f1 1px);
+    background-image: linear-gradient(#f6f5f180 1px, transparent 1px), linear-gradient(to right, #f6f5f180 1px, #DDD1F7 1px);
     background-size: 20px 20px;
-    
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 
 
@@ -25,11 +25,13 @@ nav{
     grid-template-rows: 1fr;
     justify-items: center;
     align-items: center;
+    color: white;
     background-color: var(--windowColor);
-    box-shadow:0px 2px 12px #2B0B56;
+    /* box-shadow:0px 2px 12px #2B0B56; */
 }
 .header{
     grid-area: 1/1/2/3;
+    font-size: 2rem;
 }
 .addProject{
     width: 20px;
@@ -50,6 +52,8 @@ dialog{
     height: 30%;
     background-color: #fcf9f1;
     box-shadow:8px 8px #2B0B56;
+    border-radius: 10px;
+    
 }
 dialog:-internal-dialog-in-top-layer::backdrop {
     position: fixed;
@@ -91,6 +95,14 @@ select:hover, select:focus{
 .sendTodoBtn:focus, .sendTodoBtn:hover{
     background-color: #9d8ce7;
 }
+.warningMessage{
+    color: red;
+    font-size: 0.8rem;
+}
+
+
+
+
 .projects{
     height: 100%;
     width: 100%;
@@ -113,7 +125,7 @@ select:hover, select:focus{
     box-shadow:6px 6px 2px #2b0b56b0;
     margin: 5px;
     background-color: #fcf9f1;
-    
+    border-radius: 10px;
 }
 .project:hover{
     transform: scale(1.1);
@@ -146,6 +158,8 @@ select:hover, select:focus{
     grid-template-rows: 100%;
     border-bottom: 2px solid black;
     align-items: center;
+    padding: 0 15px;
+    border-radius: 7px 7px 0px 0;
 
 }
 .windowBtn, .addProject, .addTodo, #todoDel{
@@ -178,6 +192,22 @@ select:hover, select:focus{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
+}
+#todoContainer{
+    padding: 0;
+    height: 1.2rem;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    
+}
+.todoTitle{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    width: 90%;
 }
 .footer{
     height: 5%;
@@ -185,11 +215,15 @@ select:hover, select:focus{
 }
 
 
-/* todos css */
+.newPHead{
+    color: white;
+}
 #pTitle, #pName{
-    margin-left: 5px;
+    max-width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: 600;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .todoContainer, #todoBox{
     width: 90%;
@@ -228,6 +262,7 @@ select:hover, select:focus{
     width: 50%;
     min-height: 60%;
      /* overflow-y: hidden; */
+     /* border-radius: 10px; */
 }
 .todoContent{
     margin-top: 10px;
@@ -278,8 +313,10 @@ select:hover, select:focus{
     display: flex;
     align-items: center;
     justify-self: baseline;
-    width: 30%;
-    justify-content: space-around;
+    width: 100%;
+    gap: 10px;
+    
+    /* justify-content: space-around; */
 }
 .checkbox{
     cursor: pointer;
@@ -319,9 +356,13 @@ select:hover, select:focus{
 
 .checkboxLabel{
     cursor: pointer;
+    text-overflow: ellipsis;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.checkbox:checked + .checkboxLabel, .checkbox:disabled + .checkboxLabel {
+.checkedTodo, .checkbox:checked + .checkboxLabel, .checkbox:disabled + .checkboxLabel {
     color: gray;
     text-decoration: line-through;
     cursor: default;

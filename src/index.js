@@ -1,4 +1,5 @@
 import './index.css'
+import { format } from "date-fns";
 import  Project from './project.js'
 import  ProjectDom  from './projectDOM.js'
 import  Todo  from './Todo.js'
@@ -21,33 +22,53 @@ class Index{
         
         //this.projectDom = new ProjectDom()
         this.currentProject
+        //this.currentProjectDom
         this.projectStorage= new localStorageManager()
+    }
+    defaultProject(){
+        let curDate= format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+        let defaultProject = new Project('Default Project', curDate)
+        defaultProject.assignProjectColor()
+
+        let defaultTodo = new Todo('Create more projects', "2026-01-01", 'High', false)
+        defaultProject.addTodo(defaultTodo)
+
+        this.projectStorage.saveProject(defaultProject)
+
+        let projectDOM = new ProjectDom(defaultProject, this.projectStorage)
+        projectDOM.render()
+
     }
 
     init(){
         this.getProjects()
         this.eventListeners()
-        
+
     }
     getProjects(){
+        
         let projectsArray = this.projectStorage.getProjectsArray()
         let sortedArray = this.projectStorage.sortProjects(projectsArray)
-
+        //console.log(sortedArray)
+        if (sortedArray.length == 0) { 
+            this.defaultProject() 
+        }
         sortedArray.forEach(project=>{
+            
             let projectDOM = new ProjectDom(project, this.projectStorage)
             projectDOM.render()
         })
     }
     createNewProject(projectName){
-        
-        let project = new Project(projectName)
-
+        let curDate= format(new Date(), 'yyyy-MM-dd HH:mm:ss')
+        let project = new Project(projectName, curDate)
+        project.assignProjectColor()
         let projectDOM = new ProjectDom(project, this.projectStorage)
         projectDOM.render()
 
         this.projectStorage.saveProject(project)
         this.openProject()
-
+        return project
         
     }
     projectFormHandler(e){
@@ -71,7 +92,8 @@ class Index{
     findProject(projectName){
         let project = this.projectStorage.getProject(projectName)
         
-        let projectInstance = new Project(project.name)
+        let projectInstance = new Project(project.name, project.createdDate)
+        projectInstance.projectColor = project.projectColor
         projectInstance.todoList = project.todoList
         for(let i=0; i< projectInstance.todoList.length; i++){
             let todo=projectInstance.todoList[i]
@@ -81,12 +103,12 @@ class Index{
         
         return projectInstance
     }
-    showTodos(){
+    createTodosDOM(){
         let todoContent= document.querySelector('.todoContent')
         todoContent.textContent = ''
 
         this.currentProject.todoList.forEach(todo=>{       
-            this.todoDom = new TodoDOM(todo, this.projectColor, this.projectStorage, this.currentProject)
+            this.todoDom = new TodoDOM(todo,this.projectStorage, this.currentProject)
             this.todoDom.render()
         })
         
@@ -95,20 +117,20 @@ class Index{
     openProject(){
         let projects = document.querySelectorAll('.pcontent')
         projects.forEach(project=>{
-            project.addEventListener('click', (e)=>{
+            project.addEventListener('click', ()=>{
                 let projectName= project.parentElement.dataset.projectName
-                this.projectColor = e.target.parentElement.dataset.color
+                //this.projectColor = e.target.parentElement.dataset.color
 
                 this.currentProject = this.findProject(projectName)
 
                 let title= document.querySelector('#pName')
                 let todoWindowHead= document.querySelector('.todoWindowHead')
                 title.textContent= projectName
-                todoWindowHead.style.backgroundColor = this.projectColor
+                todoWindowHead.style.backgroundColor = this.currentProject.projectColor
 
-                this.showTodos()
+                this.createTodosDOM()
                 
-                console.log(this.currentProject)
+                //console.log(this.currentProject)
                 
                 this.todosModal.showModal()
             })
@@ -121,7 +143,7 @@ class Index{
 
         this.currentProject.addTodo(todo)
 
-        this.showTodos()
+        this.createTodosDOM()
        
         this.projectStorage.saveProject(this.currentProject)
         this.todoForm.reset()
@@ -136,6 +158,7 @@ class Index{
     }
     closeDialogs(e){
         let currModal = e.target.dataset.dialogId
+
         this[currModal].close() 
     }
 
