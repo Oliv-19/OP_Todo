@@ -1,1 +1,127 @@
-<head><script defer src="main.js"></script></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OP To Do</title>
+<script defer src="main.js"></script></head>
+<body>
+    <dialog id="newPModal">
+        <div class="windowHead">
+            <p id="pTitle" class="newPHead">Add New Project</p>
+            <button data-dialog-id="newPModal" type="button" id="closeNewP" class="windowBtn">x</button>
+        </div>
+        <form method="dialog" action="" class="form" name="newPjForm">
+            <label for="pNameInput">Project Name:</label>
+            <span class="warningMessage">
+                
+            </span>
+            <input maxlength="30" name="pNameInput" type="text" class="pNameInput" required>
+            <button type="submit" class="sendBtn">save</button>
+        </form>
+    </dialog>
+    <nav>
+        <h1 class="header">Todo</h1>
+        <button type="button" name="addProject" class="addProject">+</button>
+    </nav>
+    <div class="projects">
+
+
+        <template id="template">
+            <div  class="project" id="pContainer">
+                <div class="windowHead">
+                    <p name="pTitle" id="pTitle">Daily</p>
+                    <button id="delProjectBtn" class="windowBtn">x</button>
+                </div>
+                <div title="click to open Project" class="pcontent">
+                    <div id="todoContainer" class="todoContainer">
+                        <p class="todoTitle"></p>
+                    </div>
+                    <div id="todoContainer" class="todoContainer">
+                        <p class="todoTitle"></p>
+                    </div>
+                    <div id="todoContainer" class="todoContainer">
+                        <p class="todoTitle"></p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </Template>
+
+        <template id="todosTemplate">
+            <div id="todoBox">
+                <div class="checkbox_wrapper">
+                    <input class="checkbox" id="checkbox" type="checkbox" name="checkbox" value="2">
+                    <label class="checkboxLabel" for="checkbox">To-do</label>
+                </div>
+                <!-- <div class="checkbox-wrapper-11">
+                    <input id="02-11" type="checkbox" name="r" value="2">
+                    <label for="02-11">To-do</label>
+                </div> -->
+                <p id="todoDate"></p>
+                <p id="todoPriority"></p>
+                <button type="button" id="todoDel">X</button>
+                <!-- <h5>27/11/24</h5>
+                <button type="button">-</button> -->
+            </div>
+        </template>
+        <dialog id="todosModal">
+            <div class="todoWindowHead">
+                <p id="pName">Project Name</p>
+                <button type="button" name="addTodo" class="addTodo">+</button>
+                <button data-dialog-id="todosModal" type="button" id="closeNewP" class="windowBtn">x</button>
+            </div>
+            <div class="todosHead">
+                    <p>Title</p>
+                    <p>Due date</p>
+                    <p>Priority</p>
+                    <p>Delete</p>
+                </div>
+            <div class="todoContent">
+                
+            </div>
+        </dialog>
+
+        <dialog id="newTodoModal">
+            <div class="windowHead">
+                <p id="pTitle" class="newPHead">Add New Todo</p>
+                <button data-dialog-id="newTodoModal" type="button" id="closeNewP" class="windowBtn">x</button>
+            </div>
+            <form method="dialog" action="" class="todoForm" name="newTodoForm">
+                <div class="titleContainer">
+                    <label  for="todoTitleInput">Title:</label>
+                    <input required name="todoTitleInput" type="text" class="todoTitleInput">
+                </div>
+
+                <!-- <div class="descriptionContainer">
+                    <label for="todoDescription">Description:</label>
+                    <textarea cols="20" rows="3" name="todoDescription" type="text" class="todoDescription"></textarea>
+                </div> -->
+                
+                <div class="dueDateContainer">
+                    <label for="todoDueDate">Due Date:</label>
+                    <input required name="todoDueDate" type="date" class="todoDueDate">
+                </div>
+
+                <div class="priorityContainer">
+                    <label for="todoPriority">Priority:</label>
+                    <select required name="todoPriority" class="todoPriority">
+                        <option value="">None</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+                
+                <div class="saveBtnContainer">
+                    <button type="submit" class="sendTodoBtn">save</button>
+                </div>
+            </form>
+        </dialog>
+        <div class="footer">
+        </div>
+    </div>
+        
+</body>
+</html>
