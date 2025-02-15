@@ -1,11 +1,12 @@
 
 export default  class Project {
-    constructor(name, createdDate){
+    constructor(name, createdDate, color = null){
         this.name = name
         
-        this.projectColor
+        this.projectColor = color
         this.todoList = []
         this.createdDate = createdDate
+
         
     }
     assignProjectColor(){

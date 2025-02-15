@@ -4,6 +4,7 @@ export default class localStorageManager{
     
     saveProject(project){
         console.log(project)
+        
         localStorage.setItem(project.name, JSON.stringify(project))
     
     }
@@ -17,7 +18,7 @@ export default class localStorageManager{
         return arr
     }
     sortProjects(projects){
-        console.log(projects)
+        //console.log(projects)
         return projects.sort((a, b) => new Date(a.createdDate) - new Date(b.createdDate))
     }
     getProject(pName){

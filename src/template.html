@@ -9,7 +9,7 @@
     <dialog id="newPModal">
         <div class="windowHead">
             <p id="pTitle" class="newPHead">Add New Project</p>
-            <button data-dialog-id="newPModal" type="button" id="closeNewP" class="windowBtn">x</button>
+            <button data-dialog-id="newPModal" type="button" id="closeNewP" class="windowBtn closeNewP">x</button>
         </div>
         <form method="dialog" action="" class="form" name="newPjForm">
             <label for="pNameInput">Project Name:</label>
@@ -26,7 +26,7 @@
     </nav>
     <div class="projects">
 
-
+    </div>
         <template id="template">
             <div  class="project" id="pContainer">
                 <div class="windowHead">
@@ -70,58 +70,72 @@
             <div class="todoWindowHead">
                 <p id="pName">Project Name</p>
                 <button type="button" name="addTodo" class="addTodo">+</button>
-                <button data-dialog-id="todosModal" type="button" id="closeNewP" class="windowBtn">x</button>
+                <button data-dialog-id="todosModal" type="button" id="closeNewP" class="windowBtn closeProjectBtn">x</button>
             </div>
             <div class="todosHead">
-                    <p>Title</p>
-                    <p>Due date</p>
-                    <p>Priority</p>
-                    <p>Delete</p>
-                </div>
-            <div class="todoContent">
-                
+                <p>Title</p>
+                <p>Due date</p>
+                <p>Priority</p>
+                <p>Delete</p>
             </div>
-        </dialog>
-
-        <dialog id="newTodoModal">
-            <div class="windowHead">
-                <p id="pTitle" class="newPHead">Add New Todo</p>
-                <button data-dialog-id="newTodoModal" type="button" id="closeNewP" class="windowBtn">x</button>
-            </div>
-            <form method="dialog" action="" class="todoForm" name="newTodoForm">
-                <div class="titleContainer">
-                    <label  for="todoTitleInput">Title:</label>
-                    <input required name="todoTitleInput" type="text" class="todoTitleInput">
-                </div>
-
-                <!-- <div class="descriptionContainer">
-                    <label for="todoDescription">Description:</label>
-                    <textarea cols="20" rows="3" name="todoDescription" type="text" class="todoDescription"></textarea>
-                </div> -->
-                
-                <div class="dueDateContainer">
-                    <label for="todoDueDate">Due Date:</label>
-                    <input required name="todoDueDate" type="date" class="todoDueDate">
-                </div>
-
-                <div class="priorityContainer">
-                    <label for="todoPriority">Priority:</label>
-                    <select required name="todoPriority" class="todoPriority">
+            <div class="newTodoTest">
+                <form method="post" action="" class="todoFormTest" name="newTodoFormTest">
+                    <input required name="todoTitleInputTest" type="text" class="todoTitleInputTest">
+                    <input required name="todoDueDateTest" type="date" class="todoDueDateTest" onfocus="this.min=new Date().toISOString().split('T')[0]">
+                    <select required name="todoPriorityTest" class="todoPriorityTest">
                         <option value="">None</option>
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>
                     </select>
-                </div>
-                
-                <div class="saveBtnContainer">
                     <button type="submit" class="sendTodoBtn">save</button>
-                </div>
-            </form>
+                    <button type="button" id="closeNewTodoDiv" class="closeNewTodoDiv">x</button>
+                </form>
+            </div>
+            <div class="todoContent">
+                
+            </div>
         </dialog>
+
+        <template id="emptyProject">
+            <svg class="emptyProjectSvg" xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 -960 960 960" width="100px" fill="#a3a2e2">
+                <path d="M440-240h80v-120h120v-80H520v-120h-80v120H320v80h120v120ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/>
+            </svg>
+        </Template>
+
+       
+            <dialog id="newTodoModal">
+                <div class="windowHead">
+                    <p id="pTitle" class="newPHead">Add New Todo</p>
+                    <button data-dialog-id="newTodoModal" type="button" id="closeNewTodo" class="windowBtn closeNewTodo">x</button>
+                </div>
+                <form method="dialog" action="" class="todoForm" name="newTodoForm">
+                    <div class="titleContainer">
+                        <label  for="todoTitleInput">Title:</label>
+                        <input required name="todoTitleInput" type="text" class="todoTitleInput">
+                    </div>
+                    <div class="dueDateContainer">
+                        <label for="todoDueDate">Due Date:</label>
+                        <input required name="todoDueDate" type="date" class="todoDueDate" onfocus="this.min=new Date().toISOString().split('T')[0]">
+                    </div>
+                    <div class="priorityContainer">
+                        <label for="todoPriority">Priority:</label>
+                        <select required name="todoPriority" class="todoPriority">
+                            <option value="">None</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+            
+                    <div class="saveBtnContainer">
+                        <button type="submit" class="sendTodoBtn">save</button>
+                    </div>
+                </form>
+            </dialog>
         <div class="footer">
         </div>
-    </div>
+    <!-- </div> -->
         
 </body>
 </html>

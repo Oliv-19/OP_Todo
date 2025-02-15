@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     --windowColor :#684D9A;
+    --gray :#2a2a2a;
 
 }
 body{
@@ -193,6 +194,7 @@ select:hover, select:focus{
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    cursor: pointer;
 }
 #todoContainer{
     padding: 0;
@@ -272,6 +274,7 @@ select:hover, select:focus{
     gap: 10px;
     margin-bottom: 10px;
     /* overflow: visible; */
+    min-height: 15em;
 }
 #todoCheck{
     width: 15px;
@@ -363,7 +366,36 @@ select:hover, select:focus{
 }
 
 .checkedTodo, .checkbox:checked + .checkboxLabel, .checkbox:disabled + .checkboxLabel {
-    color: gray;
+    color: var(--gray);
     text-decoration: line-through;
     cursor: default;
+}
+.finished{
+    color: var(--gray);
+    background-color: '#b9b9b9';
+    
+}
+.hidden{
+    display: none;
+}
+.dueDateToday::after{
+    content: '❗';
+    color: red;
+    /* background-color: white; */
+   
+}
+.emptyProjectSvg{
+    /* display: none; */
+    margin: auto;
+}
+#emptyProjectSvgDisplay{
+    display: block;
+}
+.newTodoTest{
+    display: none;
+}
+.showForm {
+    display: flex;
+    align-items: center;
+
 }
