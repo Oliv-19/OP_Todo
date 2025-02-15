@@ -47,7 +47,7 @@ export default class ProjectDom {
     }
     saveNewTodoHandler=(e)=>{
       e.preventDefault()
-      let testDiv=document.querySelector('.newTodoTest')
+      //let testDiv=document.querySelector('.newTodoTest')
       let todo= this.formHandler.todoFormHandler()
       this.project.addTodo(todo)
       this.createTodosDOM(this.project)
@@ -56,7 +56,7 @@ export default class ProjectDom {
       this.renderTodosName()
       this.updateTodosName()
 
-      testDiv.classList.remove('showForm') 
+      //testDiv.classList.remove('showForm') 
       this.todoForm.removeEventListener('submit', this.saveNewTodoHandler);  
       
     }
