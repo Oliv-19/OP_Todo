@@ -399,3 +399,62 @@ select:hover, select:focus{
     align-items: center;
 
 }
+
+@media (max-width: 500px) {
+    body{
+        overflow-x: hidden;
+    }
+    nav{
+        grid-template-columns: 80% 1fr;
+    }
+    .projects{
+        display: grid;
+        grid-auto-rows: 50%;
+        grid-template-columns: 100%;
+        align-items: center;
+        justify-items: center;
+        gap: 0;
+    }
+    .v1 {
+        width: 50%;
+        height: 50%;
+    }
+    .v2 {
+        width: 50%;
+        height: 80%;
+    }
+    .v3 {
+        width: 57%;
+        height: 80%;
+    }
+    .v4 {
+        width: 50%;
+        height: 65%;
+    }
+    dialog {
+        width: 55%;
+        height: 35%;
+    }
+    #todosModal {
+        width: 90%;
+        min-height: 70%;
+        overflow-x: hidden;
+    }
+    .todosHead {
+        display: grid;
+        grid-template-columns: 40% 20% repeat(2, 1fr);
+        width: 90%;
+       font-size: 0.8em;
+    }
+    #todoBox{
+        grid-template-columns: 40% 20% repeat(2, 1fr);
+        font-size: 0.8em;
+    }
+    #todoDate, #todoPriority{
+        font-size: 0.9em;
+    }
+    #newTodoModal {
+        height: 55%;
+        width: 65%;
+    }
+}
